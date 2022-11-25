@@ -1,6 +1,6 @@
 # SSH-login-send-mail
 
-Just a simple script to notify by email of some login on the ssh server.
+Just a simple script to notify by email of some login on the SSH server.
 
 ### How install
 The dependencies are `geoiplookup, s-nail, systemd, pam` so make sure you have those.
@@ -19,3 +19,10 @@ chown root:root /opt/ssh-login-send-mail.sh && chmod 700 /opt/ssh-login-send-mai
 Then edit the pam configuration at `/etc/pam.d/sshd` adding the following row in `@include common-session`
 
 `session    optional     pam_exec.so seteuid /opt/ssh-login-send-mail.sh`
+
+### How use
+Just login in your SSH server :D
+
+You can just find some output in systemd, for example:
+
+`journalctl --since "10 minute ago" | grep "ssh-login-send-mail"`
